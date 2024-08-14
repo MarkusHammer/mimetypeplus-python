@@ -1,0 +1,23 @@
+test_example_url (mimetypeplus.tests.example_tests.ExampleTests.test_example_url)
+Tests URL input (and type checking). ... ok
+test_self_file_content_binary (mimetypeplus.tests.example_tests.ExampleTests.test_self_file_content_binary)
+Tests binary data input (and type checking). ... ok
+test_self_file_content_text (mimetypeplus.tests.example_tests.ExampleTests.test_self_file_content_text)
+Tests string data input (and type checking). ... ok
+test_self_file_path (mimetypeplus.tests.example_tests.ExampleTests.test_self_file_path)
+Tests file path input (and type checking). ... ok
+test_blank (mimetypeplus.tests.specific_tests.PresetTests.test_blank)
+Tests blank input. ... ok
+test_facet (mimetypeplus.tests.specific_tests.PresetTests.test_facet)
+Tests the facet property. ... ok
+test_str_in (mimetypeplus.tests.specific_tests.PresetTests.test_str_in)
+Tests string input. ... ok
+test_suffix (mimetypeplus.tests.specific_tests.PresetTests.test_suffix)
+Tests the suffix property. ... ok
+test_tuple_in (mimetypeplus.tests.specific_tests.PresetTests.test_tuple_in)
+Tests tuple input. ... ok
+
+----------------------------------------------------------------------
+Ran 9 tests in 0.004s
+
+OK

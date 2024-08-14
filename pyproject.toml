@@ -1,0 +1,95 @@
+# pyproject.toml for the mimetypeplus python module
+# THX https://packaging.python.org/en/latest/specifications/declaring-project-metadata/#entry-points
+# THX https://pypi.org/project/validate-pyproject/
+
+[project]
+    dynamic = ["readme", "version"]
+    name = "mimetypeplus"
+    description = "A powerful Python module for intuitive MIME type management, providing utilities for identifying, creating, and manipulating MIME types in various contexts."
+    authors = [{ name = "Markus Hammer", email = "107761433+MarkusHammer@users.noreply.github.com" }]
+    license = { file = "LICENSE" }
+    dependencies = ["typing_extensions<=3.10"]
+    requires-python = ">=3.7"
+    classifiers = [
+        "License :: OSI Approved :: Mozilla Public License 2.0 (MPL 2.0)",
+        "Development Status :: 5 - Production/Stable",
+        "Intended Audience :: Developers",
+        "Natural Language :: English",
+        "Programming Language :: Python",
+        "Programming Language :: Python :: 3",
+        "Programming Language :: Python :: 3.7",
+        "Programming Language :: Python :: 3.10",
+        "Programming Language :: Python :: 3.11",
+        "Programming Language :: Python :: 3.12",
+        "Topic :: Software Development :: Libraries",
+        "Topic :: Software Development :: Libraries :: Python Modules",
+        "Topic :: Internet",
+        "Topic :: Internet :: WWW/HTTP",
+        "Topic :: Utilities",
+        "Typing :: Typed"
+    ]
+    keywords = [
+        "MIME",
+        "MIME type",
+        "content",
+        "content type",
+        "file",
+        "extension",
+        "media",
+        "type",
+        "HTTP",
+        "HTML",
+        "web",
+        "development",
+        "content negotiation",
+        "file management",
+        "internet",
+        "utilities"
+    ]
+    [project.optional-dependencies]
+        detection = [ "python-magic", "puremagic"]
+        dev = ["setuptools>=64.0.0", "pip-tools", "validate-pyproject[all]", "build", "twine", "coverage", "pdoc3", "pyright", "pylint"]
+    [project.urls]
+        Homepage = "https://github.com/MarkusHammer/mimetypeplus-python"
+        Documentation = "https://MarkusHammer.github.io/mimetypeplus-python"
+        Github  = "https://github.com/MarkusHammer/mimetypeplus-python"
+        Issues = "https://github.com/MarkusHammer/mimetypeplus-python/issues"
+        "Pull Requests" = "https://github.com/MarkusHammer/mimetypeplus-python/pulls"
+        Git = "https://github.com/MarkusHammer/mimetypeplus-python.git"
+
+[build-system]
+    requires = ["setuptools"]
+    build-backend = "setuptools.build_meta"
+
+[tool.setuptools]
+    zip-safe = true
+    [tool.setuptools.dynamic]
+        version = {attr = "mimetypeplus.__version__"}
+        readme = {file = ["README.md", "SECURITY.md", "LICENSE"], content-type = "text/markdown"}
+    [tool.setuptools.packages.find]
+        where = ["."]
+        include = ["mimetypeplus*"]
+        exclude = ["mimetypeplus.tests*"]
+        namespaces = false
+
+[tool.coverage.run]
+    data_file = "./reports/.coverage"
+[tool.coverage.report]
+    ignore_errors = true
+    skip_empty = true
+    precision = 4
+    omit=["**/tests/**"]
+    exclude_lines = [
+        "^\\s*continue\\b",
+        "^\\s*return\\b",
+        "^\\s*raise\\b",
+        "^\\s*except\\b",
+        "^\\s*warnings\\.warn\\(",
+        "^\\s*warn\\(",
+    ]
+
+[tool.pylint.'MESSAGES CONTROL']
+    disable="no-else-return,too-many-arguments,too-many-branches,too-many-return-statements,too-many-instance-attributes,too-few-public-methods"
+
+[tool.pyright]
+    typeCheckingMode="standard"

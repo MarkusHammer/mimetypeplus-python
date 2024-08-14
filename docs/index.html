@@ -1,0 +1,780 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1">
+<meta name="generator" content="pdoc3 0.11.1">
+<title>mimetypeplus API documentation</title>
+<meta name="description" content="A module containing the MimeType class, allowing for easy managing of mimetypes in python.
+Main source: …">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/10up-sanitize.css/13.0.0/sanitize.min.css" integrity="sha512-y1dtMcuvtTMJc1yPgEqF0ZjQbhnc/bFhyvIyVNb9Zk5mIGtqVaAB1Ttl28su8AvFMOY0EwRbAe+HCLqj6W7/KA==" crossorigin>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/10up-sanitize.css/13.0.0/typography.min.css" integrity="sha512-Y1DYSb995BAfxobCkKepB1BqJJTPrOp3zPL74AWFugHHmmdcvO+C48WLrUOlhGMc0QG7AE3f7gmvvcrmX2fDoA==" crossorigin>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/default.min.css" crossorigin>
+<style>:root{--highlight-color:#fe9}.flex{display:flex !important}body{line-height:1.5em}#content{padding:20px}#sidebar{padding:1.5em;overflow:hidden}#sidebar > *:last-child{margin-bottom:2cm}.http-server-breadcrumbs{font-size:130%;margin:0 0 15px 0}#footer{font-size:.75em;padding:5px 30px;border-top:1px solid #ddd;text-align:right}#footer p{margin:0 0 0 1em;display:inline-block}#footer p:last-child{margin-right:30px}h1,h2,h3,h4,h5{font-weight:300}h1{font-size:2.5em;line-height:1.1em}h2{font-size:1.75em;margin:2em 0 .50em 0}h3{font-size:1.4em;margin:1.6em 0 .7em 0}h4{margin:0;font-size:105%}h1:target,h2:target,h3:target,h4:target,h5:target,h6:target{background:var(--highlight-color);padding:.2em 0}a{color:#058;text-decoration:none;transition:color .2s ease-in-out}a:visited{color:#503}a:hover{color:#b62}.title code{font-weight:bold}h2[id^="header-"]{margin-top:2em}.ident{color:#900;font-weight:bold}pre code{font-size:.8em;line-height:1.4em;padding:1em;display:block}code{background:#f3f3f3;font-family:"DejaVu Sans Mono",monospace;padding:1px 4px;overflow-wrap:break-word}h1 code{background:transparent}pre{border-top:1px solid #ccc;border-bottom:1px solid #ccc;margin:1em 0}#http-server-module-list{display:flex;flex-flow:column}#http-server-module-list div{display:flex}#http-server-module-list dt{min-width:10%}#http-server-module-list p{margin-top:0}.toc ul,#index{list-style-type:none;margin:0;padding:0}#index code{background:transparent}#index h3{border-bottom:1px solid #ddd}#index ul{padding:0}#index h4{margin-top:.6em;font-weight:bold}@media (min-width:200ex){#index .two-column{column-count:2}}@media (min-width:300ex){#index .two-column{column-count:3}}dl{margin-bottom:2em}dl dl:last-child{margin-bottom:4em}dd{margin:0 0 1em 3em}#header-classes + dl > dd{margin-bottom:3em}dd dd{margin-left:2em}dd p{margin:10px 0}.name{background:#eee;font-size:.85em;padding:5px 10px;display:inline-block;min-width:40%}.name:hover{background:#e0e0e0}dt:target .name{background:var(--highlight-color)}.name > span:first-child{white-space:nowrap}.name.class > span:nth-child(2){margin-left:.4em}.inherited{color:#999;border-left:5px solid #eee;padding-left:1em}.inheritance em{font-style:normal;font-weight:bold}.desc h2{font-weight:400;font-size:1.25em}.desc h3{font-size:1em}.desc dt code{background:inherit}.source summary,.git-link-div{color:#666;text-align:right;font-weight:400;font-size:.8em;text-transform:uppercase}.source summary > *{white-space:nowrap;cursor:pointer}.git-link{color:inherit;margin-left:1em}.source pre{max-height:500px;overflow:auto;margin:0}.source pre code{font-size:12px;overflow:visible}.hlist{list-style:none}.hlist li{display:inline}.hlist li:after{content:',\2002'}.hlist li:last-child:after{content:none}.hlist .hlist{display:inline;padding-left:1em}img{max-width:100%}td{padding:0 .5em}.admonition{padding:.1em 1em;margin-bottom:1em}.admonition-title{font-weight:bold}.admonition.note,.admonition.info,.admonition.important{background:#aef}.admonition.todo,.admonition.versionadded,.admonition.tip,.admonition.hint{background:#dfd}.admonition.warning,.admonition.versionchanged,.admonition.deprecated{background:#fd4}.admonition.error,.admonition.danger,.admonition.caution{background:lightpink}</style>
+<style media="screen and (min-width: 700px)">@media screen and (min-width:700px){#sidebar{width:30%;height:100vh;overflow:auto;position:sticky;top:0}#content{width:70%;max-width:100ch;padding:3em 4em;border-left:1px solid #ddd}pre code{font-size:1em}.name{font-size:1em}main{display:flex;flex-direction:row-reverse;justify-content:flex-end}.toc ul ul,#index ul ul{padding-left:1em}.toc > ul > li{margin-top:.5em}}</style>
+<style media="print">@media print{#sidebar h1{page-break-before:always}.source{display:none}}@media print{*{background:transparent !important;color:#000 !important;box-shadow:none !important;text-shadow:none !important}a[href]:after{content:" (" attr(href) ")";font-size:90%}a[href][title]:after{content:none}abbr[title]:after{content:" (" attr(title) ")"}.ir a:after,a[href^="javascript:"]:after,a[href^="#"]:after{content:""}pre,blockquote{border:1px solid #999;page-break-inside:avoid}thead{display:table-header-group}tr,img{page-break-inside:avoid}img{max-width:100% !important}@page{margin:0.5cm}p,h2,h3{orphans:3;widows:3}h1,h2,h3,h4,h5,h6{page-break-after:avoid}}</style>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js" integrity="sha512-D9gUyxqja7hBtkWpPWGt9wfbfaMGVt9gnyCvYa+jojwwPHLCzUm5i8rpk7vD7wNee9bA35eYIjobYPaQuKS1MQ==" crossorigin></script>
+<script>window.addEventListener('DOMContentLoaded', () => {
+hljs.configure({languages: ['bash', 'css', 'diff', 'graphql', 'ini', 'javascript', 'json', 'plaintext', 'python', 'python-repl', 'rust', 'shell', 'sql', 'typescript', 'xml', 'yaml']});
+hljs.highlightAll();
+})</script>
+</head>
+<body>
+<main>
+<article id="content">
+<header>
+<h1 class="title">Package <code>mimetypeplus</code></h1>
+</header>
+<section id="section-intro">
+<p>A module containing the MimeType class, allowing for easy managing of mimetypes in python.
+Main source: <a href="https://datatracker.ietf.org/doc/html/rfc6838#section-4">https://datatracker.ietf.org/doc/html/rfc6838#section-4</a></p>
+</section>
+<section>
+<h2 class="section-title" id="header-submodules">Sub-modules</h2>
+<dl>
+<dt><code class="name"><a title="mimetypeplus.cmds" href="cmds.html">mimetypeplus.cmds</a></code></dt>
+<dd>
+<div class="desc"><p>cmds …</p></div>
+</dd>
+<dt><code class="name"><a title="mimetypeplus.mimetypecheckers" href="mimetypecheckers.html">mimetypeplus.mimetypecheckers</a></code></dt>
+<dd>
+<div class="desc"><p>mimetypecheckers …</p></div>
+</dd>
+<dt><code class="name"><a title="mimetypeplus.mimetypeplus" href="mimetypeplus.html">mimetypeplus.mimetypeplus</a></code></dt>
+<dd>
+<div class="desc"><p>mimetypeplus …</p></div>
+</dd>
+<dt><code class="name"><a title="mimetypeplus.tests" href="tests/index.html">mimetypeplus.tests</a></code></dt>
+<dd>
+<div class="desc"><p>Tests</p></div>
+</dd>
+<dt><code class="name"><a title="mimetypeplus.tools" href="tools.html">mimetypeplus.tools</a></code></dt>
+<dd>
+<div class="desc"><p>tools …</p></div>
+</dd>
+<dt><code class="name"><a title="mimetypeplus.typings" href="typings.html">mimetypeplus.typings</a></code></dt>
+<dd>
+<div class="desc"><p>typings …</p></div>
+</dd>
+</dl>
+</section>
+<section>
+</section>
+<section>
+</section>
+<section>
+<h2 class="section-title" id="header-classes">Classes</h2>
+<dl>
+<dt id="mimetypeplus.MimeType"><code class="flex name class">
+<span>class <span class="ident">MimeType</span></span>
+<span>(</span><span>mime: Union[ForwardRef('<a title="mimetypeplus.MimeType" href="#mimetypeplus.MimeType">MimeType</a>'), str, Tuple[str, str], Iterable[str]] = '', *, maintype: str = '', subtype: str = '')</span>
+</code></dt>
+<dd>
+<div class="desc"><p>MimeType</p>
+<p>A convenient way to manage and manipulate mime types,
+as well as identifying the types of, and extentions for mime types.</p>
+<p>Main source: <a href="https://datatracker.ietf.org/doc/html/rfc6838#section-4">https://datatracker.ietf.org/doc/html/rfc6838#section-4</a></p>
+<p><strong>init</strong> Creates a MimeType object.</p>
+<p>Keyword Arguments:
+mime &ndash; The object to base the mime type off of.
+Accepts full strings, 2 string tuples,
+iterables (expected to return only 2 strings), or another MimeType object.
+maintype &ndash; Used to override the maintype, if not an empty string.
+subtype &ndash; Used to override the subtype, if not an empty string.</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">class MimeType():
+    &#34;&#34;&#34;
+    MimeType
+    
+    A convenient way to manage and manipulate mime types,
+    as well as identifying the types of, and extentions for mime types.
+    
+    Main source: https://datatracker.ietf.org/doc/html/rfc6838#section-4
+    &#34;&#34;&#34;
+
+    # this is meant to be called when the class is defined,
+    # hence it&#39;s uncommon placement
+    mimetypes_init()
+
+    DEFAULT_TEXT_EXTENTION:LiteralString = &#34;txt&#34;
+    DEFAULT_BINARY_EXTENTION:LiteralString = &#34;bin&#34;
+
+    EXPEREMENTAL_FACET:LiteralString = &#34;x&#34;
+    VENDOR_FACET:LiteralString = &#34;vnd&#34;
+    PERSONAL_FACET:LiteralString = &#34;prs&#34;
+
+    STRICTLY_ALLOWED_CHARACTERS:LiteralString = DIGITS + ALPHA + &#34;!#$&amp;-^_.+&#34;
+    WILDCARD_SEQUENCE:LiteralString = &#34;&#34;
+    ALLOWED_CHARACTERS:LiteralString = singlify_str(STRICTLY_ALLOWED_CHARACTERS, WILDCARD_SEQUENCE)
+
+    @staticmethod
+    def from_xml_content(content_snippet:str) -&gt; Union[&#39;MimeType&#39;, None]:
+        &#34;&#34;&#34;
+        from_xml_content
+        Creates a MimeType object from the given text content of a xml file if possible.
+        Usually usefull for correcting self reported content types of pages retrieved from the web;
+        which may return a plain text mimetype even though the content may be a type of xml.
+
+        Arguments:
+            content_snippet - The beginning snippet of the content as a string.
+
+        Returns:
+            MimeType object with a correct mimetype if possible, otherwise None.
+        &#34;&#34;&#34;
+        string = mime_string_from_xml_content(content_snippet)
+        return MimeType(string) if string is not None else None
+
+    @staticmethod
+    def from_path(path:Union[str, PathLike], strict:bool = False) -&gt; Union[&#39;MimeType&#39;, None]:
+        &#34;&#34;&#34;
+        from_path
+        Creates a MimeType object from the given local path.
+
+        Arguments:
+            path - The path to be checked.
+            strict - Allow for non standard types to be included in some types of checking.
+
+        Returns:
+            MimeType object with a correct mimetype if possible, otherwise None.
+        &#34;&#34;&#34;
+        string = mime_string_from_path(path, strict=strict)
+        return MimeType(string) if string is not None else None
+
+    @staticmethod
+    def from_uri(uri:str, strict:bool = False) -&gt; Union[&#39;MimeType&#39;, None]:
+        &#34;&#34;&#34;
+        from_uri
+        Creates a MimeType object from the given uri.
+
+        Arguments:
+            uri - The uri to be checked.
+
+        Returns:
+            MimeType object with a correct mimetype if possible, otherwise None.
+        &#34;&#34;&#34;
+        string = mime_string_from_path(uri, strict=strict, no_local_checks=True)
+        return MimeType(string) if string is not None else None
+    from_url = from_uri
+
+    @staticmethod
+    def from_data(buffer:Union[bytes, str],
+                  *,
+                  hint_path:Union[str, PathLike, None] = None,
+                  encoding: str = &#34;utf8&#34;,
+                  errors:str = &#34;strict&#34;
+                 ) -&gt; Union[&#39;MimeType&#39;, None]:
+        &#34;&#34;&#34;
+        from_data
+        Creates a MimeType object from the given data.
+
+        Arguments:
+            buffer - Either bytes or a string.
+            hint_path - A optional path to the data if located on the system.
+                Used to make some typechecks more accurate.
+            encoding - The presumed encoding of the data if it is a string.
+                This does not have to be accurate in cases where the content is expected
+                to be a binary format, and the content is already bytes.
+                This is used to encode strings, or decode bytes into the oppsite form,
+                allowing for more type checksers to be used.
+            errors - See the encoding argument. Used in the same context,
+                but indicates how to handle encoding/decoding errors.
+                Values match the values used in the str.encode and bytes.decode errors argument.
+
+        Returns:
+            MimeType object with a correct mimetype if possible, otherwise None.
+        &#34;&#34;&#34;
+        string = mime_string_from_data(buffer,
+                                       hint_path = hint_path,
+                                       encoding = encoding,
+                                       errors = errors
+                                      )
+        return MimeType(string) if string is not None else None
+
+    def __init__(self,
+                 mime:Union[&#39;MimeType&#39;, str, Tuple[str, str], Iterable[str]] = &#34;&#34;,
+                 *,
+                 maintype: str = &#34;&#34;,
+                 subtype: str = &#34;&#34;,
+                ):
+        &#34;&#34;&#34;
+        __init__ Creates a MimeType object.
+
+        Keyword Arguments:
+            mime -- The object to base the mime type off of.
+                Accepts full strings, 2 string tuples,
+                iterables (expected to return only 2 strings), or another MimeType object.
+            maintype -- Used to override the maintype, if not an empty string.
+            subtype -- Used to override the subtype, if not an empty string.
+        &#34;&#34;&#34;
+        self.__maintype: str = MimeType.WILDCARD_SEQUENCE
+        self.__subtype: str = MimeType.WILDCARD_SEQUENCE
+
+        if isinstance(mime, MimeType):
+            mime = tuple(mime)
+        elif isinstance(mime, str):
+            mime = tuple(mime.split(&#34;/&#34;))
+        elif isinstance(mime, Iterable):
+            mime = tuple(x.strip(&#34;/&#34;) for x in mime)
+
+        assert len(mime) in (1,2), &#34;BAD MIME CONVERSION ERROR&#34;
+
+        self.maintype = mime[0]
+        if len(mime) == 2:
+            self.subtype = mime[1]
+
+        if maintype != &#34;&#34;:
+            self.maintype = maintype
+        if subtype != &#34;&#34;:
+            self.subtype = subtype
+
+    @property
+    def maintype(self) -&gt; str:
+        &#34;&#34;&#34;
+        maintype
+        The &#39;main&#39; part of the mimetype.
+        &#34;&#34;&#34;
+        return self.__maintype
+    @maintype.setter
+    def maintype(self, value: str):
+        value = (value).strip().lower()
+        if value == &#34;&#34;:
+            value = MimeType.WILDCARD_SEQUENCE
+        self.__maintype = value
+
+    @property
+    def subtype(self) -&gt; str:
+        &#34;&#34;&#34;
+        subtype
+        The &#39;sub&#39; part of the mimetype.
+        &#34;&#34;&#34;
+        return self.__subtype
+    @subtype.setter
+    def subtype(self, value: str):
+        value = (value).strip().lower()
+        if value == &#34;&#34;:
+            value = MimeType.WILDCARD_SEQUENCE
+        self.__subtype = value
+
+    @property
+    def suffix(self) -&gt; str:
+        &#34;&#34;&#34;
+        suffix
+        The &#39;suffix&#39; part of the mimetype (the section of the subtype after the last &#39;+&#39;), if any.
+        A blank string if not set.
+        &#34;&#34;&#34;
+        index = self.subtype.rfind(&#34;+&#34;)
+        if index &lt; 0:
+            return &#34;&#34;
+        else:
+            return self.subtype[index+1:]
+    @suffix.setter
+    def suffix(self, value: str):
+        index = self.subtype.rfind(&#34;+&#34;)
+        if index &lt; 0:
+            self.subtype += f&#34;+{value}&#34;
+        else:
+            self.subtype = self.subtype[:index+1] + value
+    structure = suffix
+    syntax = suffix
+
+    @property
+    def facet(self) -&gt; str:
+        &#34;&#34;&#34;
+        facet
+        The &#39;facet&#39; part of the mimetype (the section of the subtype before the first &#39;.&#39;), if any.
+        A blank string if not set.
+        &#34;&#34;&#34;
+        index = self.subtype.find(&#34;.&#34;)
+        if index &lt; 0:
+            return &#34;&#34;
+        else:
+            return self.subtype[:index]
+    @facet.setter
+    def facet(self, value: str):
+        index = self.subtype.find(&#34;.&#34;)
+        if index &lt; 0:
+            self.subtype += f&#34;{value}.&#34;
+        else:
+            self.subtype = value + self.subtype[index:]
+
+    @property
+    def experimental_facet(self) -&gt; bool:
+        &#34;&#34;&#34;
+        True if the mimetype is marked as experemental (using the facet of the type).
+        &#34;&#34;&#34;
+        return self.facet == MimeType.EXPEREMENTAL_FACET
+
+    @property
+    def vendor_facet(self) -&gt; bool:
+        &#34;&#34;&#34;
+        True if the mimetype is marked as vendor (using the facet of the type).
+        &#34;&#34;&#34;
+        return self.facet == MimeType.VENDOR_FACET
+
+    @property
+    def personal_facet(self) -&gt; bool:
+        &#34;&#34;&#34;
+        True if the mimetype is marked as personal (using the facet of the type).
+        &#34;&#34;&#34;
+        return self.facet == MimeType.PERSONAL_FACET
+
+    def encode(self) -&gt; str:
+        &#34;&#34;&#34;
+        encode
+        
+        Returns:
+            The MimeType object as a string.
+        &#34;&#34;&#34;
+        return f&#34;{self.maintype}/{self.subtype}&#34;
+    __str__ = encode
+    __repr__ = encode
+
+    def is_empty(self) -&gt; bool:
+        &#34;&#34;&#34;
+        is_empty
+        
+        Returns:
+            True if both the main and subtype are empty (unset), otherwise false.
+        &#34;&#34;&#34;
+        main_wild = self.maintype == MimeType.WILDCARD_SEQUENCE
+        sub_wild = self.subtype == MimeType.WILDCARD_SEQUENCE
+        return main_wild and sub_wild
+    def __bool__(self):
+        &#34;&#34;&#34;
+        Returns:
+            True if not empty.
+        &#34;&#34;&#34;
+        return not self.is_empty()
+
+    def is_valid(self, strict:bool = True) -&gt; bool:
+        &#34;&#34;&#34;
+        is_valid
+
+        Keyword Arguments:
+            strict - If true, strictly only the characters stated to be used
+            in mimetypes will be consitered valid.
+
+        Returns:
+            True if all characters used in the mimetype are allowed
+            as stated in the official specification (RFC docs),
+            and optionally a few other commonly used characters in mime types.
+        &#34;&#34;&#34;
+        charset = (MimeType.STRICTLY_ALLOWED_CHARACTERS if strict else MimeType.ALLOWED_CHARACTERS)
+        testcollection = &#34;&#34;
+        if self.maintype != MimeType.WILDCARD_SEQUENCE:
+            testcollection += self.maintype
+        if self.subtype != MimeType.WILDCARD_SEQUENCE:
+            testcollection += self.subtype
+        for char in testcollection:
+            if not char in charset:
+                return False
+        return True
+
+    def to_extention(self, strict:bool = False) -&gt; Union[str, None]:
+        &#34;&#34;&#34;
+        to_extention
+
+        Keyword Arguments:
+            strict - When true, excludes commoly used but non standard types.
+
+        Returns:
+            A string of the expected extention for the type if found,
+            otherwise None.
+        &#34;&#34;&#34;
+        if not self.is_empty():
+            ext = guess_extension_text(
+                                       str(self).replace(MimeType.WILDCARD_SEQUENCE, &#34;&#34;),
+                                       strict=strict
+                                      )
+            if ext is not None:
+                ext = ext.lstrip(&#34;.&#34;)
+            elif self.maintype == &#34;text&#34;:
+                ext = MimeType.DEFAULT_TEXT_EXTENTION
+            elif self.maintype != MimeType.WILDCARD_SEQUENCE:
+                ext = MimeType.DEFAULT_BINARY_EXTENTION
+            return ext
+        else:
+            return None
+
+    def __eq__(self,
+               other:Union[&#39;MimeType&#39;, str, Tuple[str, str], Iterable[str], object]
+              ) -&gt; Union[bool, NotImplementedType]:
+        if not isinstance(other, (MimeType, tuple, str, Iterable)):
+            return NotImplemented
+        return tuple(self) == tuple(MimeType(other))
+
+    def __iter__(self):
+        yield self.maintype
+        yield self.subtype</code></pre>
+</details>
+<h3>Class variables</h3>
+<dl>
+<dt id="mimetypeplus.MimeType.ALLOWED_CHARACTERS"><code class="name">var <span class="ident">ALLOWED_CHARACTERS</span> : LiteralString</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="mimetypeplus.MimeType.DEFAULT_BINARY_EXTENTION"><code class="name">var <span class="ident">DEFAULT_BINARY_EXTENTION</span> : LiteralString</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="mimetypeplus.MimeType.DEFAULT_TEXT_EXTENTION"><code class="name">var <span class="ident">DEFAULT_TEXT_EXTENTION</span> : LiteralString</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="mimetypeplus.MimeType.EXPEREMENTAL_FACET"><code class="name">var <span class="ident">EXPEREMENTAL_FACET</span> : LiteralString</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="mimetypeplus.MimeType.PERSONAL_FACET"><code class="name">var <span class="ident">PERSONAL_FACET</span> : LiteralString</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="mimetypeplus.MimeType.STRICTLY_ALLOWED_CHARACTERS"><code class="name">var <span class="ident">STRICTLY_ALLOWED_CHARACTERS</span> : LiteralString</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="mimetypeplus.MimeType.VENDOR_FACET"><code class="name">var <span class="ident">VENDOR_FACET</span> : LiteralString</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="mimetypeplus.MimeType.WILDCARD_SEQUENCE"><code class="name">var <span class="ident">WILDCARD_SEQUENCE</span> : LiteralString</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+</dl>
+<h3>Static methods</h3>
+<dl>
+<dt id="mimetypeplus.MimeType.from_data"><code class="name flex">
+<span>def <span class="ident">from_data</span></span>(<span>buffer: Union[bytes, str], *, hint_path: Union[str, os.PathLike, ForwardRef(None)] = None, encoding: str = 'utf8', errors: str = 'strict') ‑> Optional[<a title="mimetypeplus.mimetypeplus.MimeType" href="mimetypeplus.html#mimetypeplus.mimetypeplus.MimeType">MimeType</a>]</span>
+</code></dt>
+<dd>
+<div class="desc"><p>from_data
+Creates a MimeType object from the given data.</p>
+<h2 id="arguments">Arguments</h2>
+<p>buffer - Either bytes or a string.
+hint_path - A optional path to the data if located on the system.
+Used to make some typechecks more accurate.
+encoding - The presumed encoding of the data if it is a string.
+This does not have to be accurate in cases where the content is expected
+to be a binary format, and the content is already bytes.
+This is used to encode strings, or decode bytes into the oppsite form,
+allowing for more type checksers to be used.
+errors - See the encoding argument. Used in the same context,
+but indicates how to handle encoding/decoding errors.
+Values match the values used in the str.encode and bytes.decode errors argument.</p>
+<h2 id="returns">Returns</h2>
+<p>MimeType object with a correct mimetype if possible, otherwise None.</p></div>
+</dd>
+<dt id="mimetypeplus.MimeType.from_path"><code class="name flex">
+<span>def <span class="ident">from_path</span></span>(<span>path: Union[str, os.PathLike], strict: bool = False) ‑> Optional[<a title="mimetypeplus.mimetypeplus.MimeType" href="mimetypeplus.html#mimetypeplus.mimetypeplus.MimeType">MimeType</a>]</span>
+</code></dt>
+<dd>
+<div class="desc"><p>from_path
+Creates a MimeType object from the given local path.</p>
+<h2 id="arguments">Arguments</h2>
+<p>path - The path to be checked.
+strict - Allow for non standard types to be included in some types of checking.</p>
+<h2 id="returns">Returns</h2>
+<p>MimeType object with a correct mimetype if possible, otherwise None.</p></div>
+</dd>
+<dt id="mimetypeplus.MimeType.from_uri"><code class="name flex">
+<span>def <span class="ident">from_uri</span></span>(<span>uri: str, strict: bool = False) ‑> Optional[<a title="mimetypeplus.mimetypeplus.MimeType" href="mimetypeplus.html#mimetypeplus.mimetypeplus.MimeType">MimeType</a>]</span>
+</code></dt>
+<dd>
+<div class="desc"><p>from_uri
+Creates a MimeType object from the given uri.</p>
+<h2 id="arguments">Arguments</h2>
+<p>uri - The uri to be checked.</p>
+<h2 id="returns">Returns</h2>
+<p>MimeType object with a correct mimetype if possible, otherwise None.</p></div>
+</dd>
+<dt id="mimetypeplus.MimeType.from_url"><code class="name flex">
+<span>def <span class="ident">from_url</span></span>(<span>uri: str, strict: bool = False) ‑> Optional[<a title="mimetypeplus.mimetypeplus.MimeType" href="mimetypeplus.html#mimetypeplus.mimetypeplus.MimeType">MimeType</a>]</span>
+</code></dt>
+<dd>
+<div class="desc"><p>from_uri
+Creates a MimeType object from the given uri.</p>
+<h2 id="arguments">Arguments</h2>
+<p>uri - The uri to be checked.</p>
+<h2 id="returns">Returns</h2>
+<p>MimeType object with a correct mimetype if possible, otherwise None.</p></div>
+</dd>
+<dt id="mimetypeplus.MimeType.from_xml_content"><code class="name flex">
+<span>def <span class="ident">from_xml_content</span></span>(<span>content_snippet: str) ‑> Optional[<a title="mimetypeplus.mimetypeplus.MimeType" href="mimetypeplus.html#mimetypeplus.mimetypeplus.MimeType">MimeType</a>]</span>
+</code></dt>
+<dd>
+<div class="desc"><p>from_xml_content
+Creates a MimeType object from the given text content of a xml file if possible.
+Usually usefull for correcting self reported content types of pages retrieved from the web;
+which may return a plain text mimetype even though the content may be a type of xml.</p>
+<h2 id="arguments">Arguments</h2>
+<p>content_snippet - The beginning snippet of the content as a string.</p>
+<h2 id="returns">Returns</h2>
+<p>MimeType object with a correct mimetype if possible, otherwise None.</p></div>
+</dd>
+</dl>
+<h3>Instance variables</h3>
+<dl>
+<dt id="mimetypeplus.MimeType.experimental_facet"><code class="name">prop <span class="ident">experimental_facet</span> : bool</code></dt>
+<dd>
+<div class="desc"><p>True if the mimetype is marked as experemental (using the facet of the type).</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">@property
+def experimental_facet(self) -&gt; bool:
+    &#34;&#34;&#34;
+    True if the mimetype is marked as experemental (using the facet of the type).
+    &#34;&#34;&#34;
+    return self.facet == MimeType.EXPEREMENTAL_FACET</code></pre>
+</details>
+</dd>
+<dt id="mimetypeplus.MimeType.facet"><code class="name">prop <span class="ident">facet</span> : str</code></dt>
+<dd>
+<div class="desc"><p>facet
+The 'facet' part of the mimetype (the section of the subtype before the first '.'), if any.
+A blank string if not set.</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">@property
+def facet(self) -&gt; str:
+    &#34;&#34;&#34;
+    facet
+    The &#39;facet&#39; part of the mimetype (the section of the subtype before the first &#39;.&#39;), if any.
+    A blank string if not set.
+    &#34;&#34;&#34;
+    index = self.subtype.find(&#34;.&#34;)
+    if index &lt; 0:
+        return &#34;&#34;
+    else:
+        return self.subtype[:index]</code></pre>
+</details>
+</dd>
+<dt id="mimetypeplus.MimeType.maintype"><code class="name">prop <span class="ident">maintype</span> : str</code></dt>
+<dd>
+<div class="desc"><p>maintype
+The 'main' part of the mimetype.</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">@property
+def maintype(self) -&gt; str:
+    &#34;&#34;&#34;
+    maintype
+    The &#39;main&#39; part of the mimetype.
+    &#34;&#34;&#34;
+    return self.__maintype</code></pre>
+</details>
+</dd>
+<dt id="mimetypeplus.MimeType.personal_facet"><code class="name">prop <span class="ident">personal_facet</span> : bool</code></dt>
+<dd>
+<div class="desc"><p>True if the mimetype is marked as personal (using the facet of the type).</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">@property
+def personal_facet(self) -&gt; bool:
+    &#34;&#34;&#34;
+    True if the mimetype is marked as personal (using the facet of the type).
+    &#34;&#34;&#34;
+    return self.facet == MimeType.PERSONAL_FACET</code></pre>
+</details>
+</dd>
+<dt id="mimetypeplus.MimeType.structure"><code class="name">prop <span class="ident">structure</span> : str</code></dt>
+<dd>
+<div class="desc"><p>suffix
+The 'suffix' part of the mimetype (the section of the subtype after the last '+'), if any.
+A blank string if not set.</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">@property
+def suffix(self) -&gt; str:
+    &#34;&#34;&#34;
+    suffix
+    The &#39;suffix&#39; part of the mimetype (the section of the subtype after the last &#39;+&#39;), if any.
+    A blank string if not set.
+    &#34;&#34;&#34;
+    index = self.subtype.rfind(&#34;+&#34;)
+    if index &lt; 0:
+        return &#34;&#34;
+    else:
+        return self.subtype[index+1:]</code></pre>
+</details>
+</dd>
+<dt id="mimetypeplus.MimeType.subtype"><code class="name">prop <span class="ident">subtype</span> : str</code></dt>
+<dd>
+<div class="desc"><p>subtype
+The 'sub' part of the mimetype.</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">@property
+def subtype(self) -&gt; str:
+    &#34;&#34;&#34;
+    subtype
+    The &#39;sub&#39; part of the mimetype.
+    &#34;&#34;&#34;
+    return self.__subtype</code></pre>
+</details>
+</dd>
+<dt id="mimetypeplus.MimeType.suffix"><code class="name">prop <span class="ident">suffix</span> : str</code></dt>
+<dd>
+<div class="desc"><p>suffix
+The 'suffix' part of the mimetype (the section of the subtype after the last '+'), if any.
+A blank string if not set.</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">@property
+def suffix(self) -&gt; str:
+    &#34;&#34;&#34;
+    suffix
+    The &#39;suffix&#39; part of the mimetype (the section of the subtype after the last &#39;+&#39;), if any.
+    A blank string if not set.
+    &#34;&#34;&#34;
+    index = self.subtype.rfind(&#34;+&#34;)
+    if index &lt; 0:
+        return &#34;&#34;
+    else:
+        return self.subtype[index+1:]</code></pre>
+</details>
+</dd>
+<dt id="mimetypeplus.MimeType.syntax"><code class="name">prop <span class="ident">syntax</span> : str</code></dt>
+<dd>
+<div class="desc"><p>suffix
+The 'suffix' part of the mimetype (the section of the subtype after the last '+'), if any.
+A blank string if not set.</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">@property
+def suffix(self) -&gt; str:
+    &#34;&#34;&#34;
+    suffix
+    The &#39;suffix&#39; part of the mimetype (the section of the subtype after the last &#39;+&#39;), if any.
+    A blank string if not set.
+    &#34;&#34;&#34;
+    index = self.subtype.rfind(&#34;+&#34;)
+    if index &lt; 0:
+        return &#34;&#34;
+    else:
+        return self.subtype[index+1:]</code></pre>
+</details>
+</dd>
+<dt id="mimetypeplus.MimeType.vendor_facet"><code class="name">prop <span class="ident">vendor_facet</span> : bool</code></dt>
+<dd>
+<div class="desc"><p>True if the mimetype is marked as vendor (using the facet of the type).</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">@property
+def vendor_facet(self) -&gt; bool:
+    &#34;&#34;&#34;
+    True if the mimetype is marked as vendor (using the facet of the type).
+    &#34;&#34;&#34;
+    return self.facet == MimeType.VENDOR_FACET</code></pre>
+</details>
+</dd>
+</dl>
+<h3>Methods</h3>
+<dl>
+<dt id="mimetypeplus.MimeType.encode"><code class="name flex">
+<span>def <span class="ident">encode</span></span>(<span>self) ‑> str</span>
+</code></dt>
+<dd>
+<div class="desc"><p>encode</p>
+<h2 id="returns">Returns</h2>
+<p>The MimeType object as a string.</p></div>
+</dd>
+<dt id="mimetypeplus.MimeType.is_empty"><code class="name flex">
+<span>def <span class="ident">is_empty</span></span>(<span>self) ‑> bool</span>
+</code></dt>
+<dd>
+<div class="desc"><p>is_empty</p>
+<h2 id="returns">Returns</h2>
+<p>True if both the main and subtype are empty (unset), otherwise false.</p></div>
+</dd>
+<dt id="mimetypeplus.MimeType.is_valid"><code class="name flex">
+<span>def <span class="ident">is_valid</span></span>(<span>self, strict: bool = True) ‑> bool</span>
+</code></dt>
+<dd>
+<div class="desc"><p>is_valid</p>
+<p>Keyword Arguments:
+strict - If true, strictly only the characters stated to be used
+in mimetypes will be consitered valid.</p>
+<h2 id="returns">Returns</h2>
+<p>True if all characters used in the mimetype are allowed
+as stated in the official specification (RFC docs),
+and optionally a few other commonly used characters in mime types.</p></div>
+</dd>
+<dt id="mimetypeplus.MimeType.to_extention"><code class="name flex">
+<span>def <span class="ident">to_extention</span></span>(<span>self, strict: bool = False) ‑> Optional[str]</span>
+</code></dt>
+<dd>
+<div class="desc"><p>to_extention</p>
+<p>Keyword Arguments:
+strict - When true, excludes commoly used but non standard types.</p>
+<h2 id="returns">Returns</h2>
+<p>A string of the expected extention for the type if found,
+otherwise None.</p></div>
+</dd>
+</dl>
+</dd>
+</dl>
+</section>
+</article>
+<nav id="sidebar">
+<div class="toc">
+<ul></ul>
+</div>
+<ul id="index">
+<li><h3><a href="#header-submodules">Sub-modules</a></h3>
+<ul>
+<li><code><a title="mimetypeplus.cmds" href="cmds.html">mimetypeplus.cmds</a></code></li>
+<li><code><a title="mimetypeplus.mimetypecheckers" href="mimetypecheckers.html">mimetypeplus.mimetypecheckers</a></code></li>
+<li><code><a title="mimetypeplus.mimetypeplus" href="mimetypeplus.html">mimetypeplus.mimetypeplus</a></code></li>
+<li><code><a title="mimetypeplus.tests" href="tests/index.html">mimetypeplus.tests</a></code></li>
+<li><code><a title="mimetypeplus.tools" href="tools.html">mimetypeplus.tools</a></code></li>
+<li><code><a title="mimetypeplus.typings" href="typings.html">mimetypeplus.typings</a></code></li>
+</ul>
+</li>
+<li><h3><a href="#header-classes">Classes</a></h3>
+<ul>
+<li>
+<h4><code><a title="mimetypeplus.MimeType" href="#mimetypeplus.MimeType">MimeType</a></code></h4>
+<ul class="two-column">
+<li><code><a title="mimetypeplus.MimeType.encode" href="#mimetypeplus.MimeType.encode">encode</a></code></li>
+<li><code><a title="mimetypeplus.MimeType.from_data" href="#mimetypeplus.MimeType.from_data">from_data</a></code></li>
+<li><code><a title="mimetypeplus.MimeType.from_path" href="#mimetypeplus.MimeType.from_path">from_path</a></code></li>
+<li><code><a title="mimetypeplus.MimeType.from_uri" href="#mimetypeplus.MimeType.from_uri">from_uri</a></code></li>
+<li><code><a title="mimetypeplus.MimeType.from_url" href="#mimetypeplus.MimeType.from_url">from_url</a></code></li>
+<li><code><a title="mimetypeplus.MimeType.from_xml_content" href="#mimetypeplus.MimeType.from_xml_content">from_xml_content</a></code></li>
+<li><code><a title="mimetypeplus.MimeType.is_empty" href="#mimetypeplus.MimeType.is_empty">is_empty</a></code></li>
+<li><code><a title="mimetypeplus.MimeType.is_valid" href="#mimetypeplus.MimeType.is_valid">is_valid</a></code></li>
+<li><code><a title="mimetypeplus.MimeType.to_extention" href="#mimetypeplus.MimeType.to_extention">to_extention</a></code></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</nav>
+</main>
+<footer id="footer">
+<p>Generated by <a href="https://pdoc3.github.io/pdoc" title="pdoc: Python API documentation generator"><cite>pdoc</cite> 0.11.1</a>.</p>
+</footer>
+</body>
+</html>
