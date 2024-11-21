@@ -3,6 +3,8 @@
 
 > A simple python module focused on easy MIME type manipulation and detection.
 
+[![CodeQL](https://github.com/MarkusHammer/mimetypeplus-python/actions/workflows/github-code-scanning/codeql/badge.svg)](https://github.com/MarkusHammer/mimetypeplus-python/actions/workflows/github-code-scanning/codeql) [![Ko-Fi](https://img.shields.io/badge/Ko--fi-F16061?style=for-the-badge&logo=ko-fi&logoColor=white)](https://ko-fi.com/markushammer)
+
 [Documentation](https://MarkusHammer.github.io/mimetypeplus-python)
 
 ## Setup
