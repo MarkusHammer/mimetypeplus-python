@@ -38,8 +38,8 @@ class MimeType():
     WILDCARD_SEQUENCE:LiteralString = ""
     ALLOWED_CHARACTERS:LiteralString = singlify_str(STRICTLY_ALLOWED_CHARACTERS, WILDCARD_SEQUENCE)
 
-    @staticmethod
-    def from_xml_content(content_snippet:str) -> Union['MimeType', None]:
+    @classmethod
+    def from_xml_content(cls, content_snippet:str) -> Union['MimeType', None]:
         """
         from_xml_content
         Creates a MimeType object from the given text content of a xml file if possible.
@@ -55,8 +55,8 @@ class MimeType():
         string = mime_string_from_xml_content(content_snippet)
         return MimeType(string) if string is not None else None
 
-    @staticmethod
-    def from_path(path:Union[str, PathLike], strict:bool = False) -> Union['MimeType', None]:
+    @classmethod
+    def from_path(cls, path:Union[str, PathLike], strict:bool = False) -> Union['MimeType', None]:
         """
         from_path
         Creates a MimeType object from the given local path.
@@ -71,8 +71,8 @@ class MimeType():
         string = mime_string_from_path(path, strict=strict)
         return MimeType(string) if string is not None else None
 
-    @staticmethod
-    def from_uri(uri:str, strict:bool = False) -> Union['MimeType', None]:
+    @classmethod
+    def from_uri(cls, uri:str, strict:bool = False) -> Union['MimeType', None]:
         """
         from_uri
         Creates a MimeType object from the given uri.
@@ -87,8 +87,9 @@ class MimeType():
         return MimeType(string) if string is not None else None
     from_url = from_uri
 
-    @staticmethod
-    def from_data(buffer:Union[bytes, str],
+    @classmethod
+    def from_data(cls,
+                  buffer:Union[bytes, str],
                   *,
                   hint_path:Union[str, PathLike, None] = None,
                   encoding: str = "utf8",
