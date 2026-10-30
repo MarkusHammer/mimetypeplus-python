@@ -4,9 +4,7 @@ tools
 The tools used in the MimeType module
 """
 
-#pylint:disable=wildcard-import,unused-wildcard-import
-
-from .typings import *
+from .typings import LiteralString, cast
 
 def singlify_str(*in_strs:LiteralString) -> LiteralString:
     """

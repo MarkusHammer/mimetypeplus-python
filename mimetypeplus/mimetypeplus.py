@@ -5,18 +5,18 @@ A module containing the MimeType class, allowing for easy managing of mimetypes 
 Main source: https://datatracker.ietf.org/doc/html/rfc6838#section-4
 """
 
-#pylint:disable=wildcard-import,unused-wildcard-import
-
+from collections.abc import Container, Hashable, Reversible #TODO put in the right place
+from functools import total_ordering
 from string import (digits as DIGITS, ascii_letters as ALPHA)
 
-from .typings import *
-from .mimetypecheckers import *
-from .tools import *
+from .typings import Union, Tuple, LiteralString, ZipFile, PathLike, Iterable, NotImplementedType
+from .mimetypecheckers import mimetypes_init, mime_string_from_xml_content, mime_string_from_path, mime_string_from_data, mime_string_from_odf_zip_parsed, guess_extension_text
+from .tools import singlify_str
 
 class MimeType():
     """
     MimeType
-    
+
     A convenient way to manage and manipulate mime types,
     as well as identifying the types of, and extensions for mime types.
 
@@ -252,7 +252,7 @@ class MimeType():
     def encode(self) -> str:
         """
         encode
-        
+
         Returns:
             The MimeType object as a string.
         """
@@ -263,7 +263,7 @@ class MimeType():
     def is_empty(self) -> bool:
         """
         is_empty
-        
+
         Returns:
             True if both the main and subtype are empty (unset), otherwise false.
         """

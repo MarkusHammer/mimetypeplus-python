@@ -4,16 +4,18 @@ mimetypecheckers
 Type checker utilities for the MimeType module
 """
 
-#pylint:disable=unused-import,wildcard-import,unused-wildcard-import,pointless-string-statement
+# pylint:disable=pointless-string-statement
 
+# pylint:disable-next=unused-import
 from mimetypes import (
     guess_extension as guess_extension_text,
     guess_type as guess_type_path_URI,
     init as mimetypes_init
 )
 
-from .cmds import *
-from .typings import *
+from .typings import Union, PathLike, Path, cast
+from .cmds import file_cmd_mime_type_from_path, xdgmime_cmd_mime_type_from_path, mimetype_cmd_mime_type_from_path
+
 
 """True if the 'magic' module was imported."""
 MAGICMIME_AVAILABLE: bool  # DO NOT MODIFY, READ ONLY
@@ -26,7 +28,7 @@ except ImportError:
 """True if the 'puremagic' module was imported."""
 PUREMAGICMIME_AVAILABLE: bool  # DO NOT MODIFY, READ ONLY
 try:
-    from puremagic import (from_file as puremagic_from_path,    #type:ignore
+    from puremagic import (from_file as puremagic_from_path,  # type:ignore
                            from_string as puremagic_from_buffer,
                            PureError
                           )
