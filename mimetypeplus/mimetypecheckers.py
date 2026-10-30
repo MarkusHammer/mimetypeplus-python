@@ -47,7 +47,7 @@ def mime_string_from_xml_content(content_snippet:str) -> Union[str, None]:
     """
     mime_string_from_xml_content
     Gets the mime type from the given text content of a xml file if possible.
-    Usually usefull for correcting self reported content types of pages retrieved from the web;
+    Usually useful for correcting self reported content types of pages retrieved from the web;
     which may return a plain text mimetype even though the content may be a type of xml.
 
     Arguments:
@@ -127,12 +127,12 @@ def mime_string_from_data(
     Arguments:
         buffer - Either bytes or a string.
         hint_path - A optional path to the data if located on the system.
-            Used to make some typechecks more accurate.
+            Used to make some typecheck more accurate.
         encoding - The presumed encoding of the data if it is a string.
             This does not have to be accurate in cases where the content is expected
             to be a binary format, and the content is already bytes.
-            This is used to encode strings, or decode bytes into the oppsite form,
-            allowing for more type checksers to be used.
+            This is used to encode strings, or decode bytes into the opposite form,
+            allowing for more type checkers to be used.
         errors - See the encoding argument. Used in the same context,
             but indicates how to handle encoding/decoding errors.
             Values match the values used in the str.encode and bytes.decode errors argument.

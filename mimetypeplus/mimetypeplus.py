@@ -18,8 +18,8 @@ class MimeType():
     MimeType
     
     A convenient way to manage and manipulate mime types,
-    as well as identifying the types of, and extentions for mime types.
-    
+    as well as identifying the types of, and extensions for mime types.
+
     Main source: https://datatracker.ietf.org/doc/html/rfc6838#section-4
     """
 
@@ -30,7 +30,7 @@ class MimeType():
     DEFAULT_TEXT_EXTENTION:LiteralString = "txt"
     DEFAULT_BINARY_EXTENTION:LiteralString = "bin"
 
-    EXPEREMENTAL_FACET:LiteralString = "x"
+    EXPERIMENTAL_FACET:LiteralString = "x"
     VENDOR_FACET:LiteralString = "vnd"
     PERSONAL_FACET:LiteralString = "prs"
 
@@ -43,7 +43,7 @@ class MimeType():
         """
         from_xml_content
         Creates a MimeType object from the given text content of a xml file if possible.
-        Usually usefull for correcting self reported content types of pages retrieved from the web;
+        Usually useful for correcting self reported content types of pages retrieved from the web;
         which may return a plain text mimetype even though the content may be a type of xml.
 
         Arguments:
@@ -105,8 +105,8 @@ class MimeType():
             encoding - The presumed encoding of the data if it is a string.
                 This does not have to be accurate in cases where the content is expected
                 to be a binary format, and the content is already bytes.
-                This is used to encode strings, or decode bytes into the oppsite form,
-                allowing for more type checksers to be used.
+                This is used to encode strings, or decode bytes into the opposite form,
+                allowing for more type checkers to be used.
             errors - See the encoding argument. Used in the same context,
                 but indicates how to handle encoding/decoding errors.
                 Values match the values used in the str.encode and bytes.decode errors argument.
@@ -231,9 +231,9 @@ class MimeType():
     @property
     def experimental_facet(self) -> bool:
         """
-        True if the mimetype is marked as experemental (using the facet of the type).
+        True if the mimetype is marked as experimental (using the facet of the type).
         """
-        return self.facet == MimeType.EXPEREMENTAL_FACET
+        return self.facet == MimeType.EXPERIMENTAL_FACET
 
     @property
     def vendor_facet(self) -> bool:
@@ -283,7 +283,7 @@ class MimeType():
 
         Keyword Arguments:
             strict - If true, strictly only the characters stated to be used
-            in mimetypes will be consitered valid.
+            in mimetypes will be considered valid.
 
         Returns:
             True if all characters used in the mimetype are allowed
@@ -306,7 +306,7 @@ class MimeType():
         to_extention
 
         Keyword Arguments:
-            strict - When true, excludes commoly used but non standard types.
+            strict - When true, excludes commonly used but non standard types.
 
         Returns:
             A string of the expected extention for the type if found,

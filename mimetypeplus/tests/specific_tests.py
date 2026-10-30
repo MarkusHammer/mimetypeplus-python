@@ -132,10 +132,10 @@ class PresetTests(unittest.TestCase):
         self.assertTrue(preset.vendor_facet)
         self.assertFalse(preset.personal_facet)
 
-        preset.facet = MimeType.EXPEREMENTAL_FACET
+        preset.facet = MimeType.EXPERIMENTAL_FACET
 
         self.assertEqual(preset.suffix, "")
-        self.assertEqual(preset.facet, MimeType.EXPEREMENTAL_FACET)
+        self.assertEqual(preset.facet, MimeType.EXPERIMENTAL_FACET)
 
         self.assertTrue(preset.experimental_facet)
         self.assertFalse(preset.vendor_facet)

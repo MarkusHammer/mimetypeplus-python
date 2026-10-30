@@ -1,7 +1,7 @@
 """
 typings
 
-Contains commoly used types used for type checking and base classes
+Contains commonly used types used for type checking and base classes
 """
 #pylint:disable=unused-import,ungrouped-imports
 

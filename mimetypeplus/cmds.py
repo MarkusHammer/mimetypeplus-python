@@ -36,7 +36,7 @@ def file_cmd_mime_type_from_path(path:Union[Path, PathLike, str]) -> Union[str, 
         path - The local path to the file on the system.
 
     Returns:
-        None if the type is not found, or 'file' is not acessable in the current environment,
+        None if the type is not found, or 'file' is not accessible in the current environment,
         or a string of the mime type.
     """
     if FILE_CMD is None:
@@ -64,7 +64,7 @@ def mimetype_cmd_mime_type_from_path(path:Union[Path, PathLike, str]) -> Union[s
         path - The local path to the file on the system.
 
     Returns:
-        None if the type is not found, or 'mimetype' is not acessable in the current environment,
+        None if the type is not found, or 'mimetype' is not accessible in the current environment,
         or a string of the mime type.
     """
     if MIMETYPE_CMD is None:
@@ -92,7 +92,7 @@ def xdgmime_cmd_mime_type_from_path(path:Union[Path, PathLike, str]) -> Union[st
         path - The local path to the file on the system.
 
     Returns:
-        None if the type is not found, or 'xdg-mime' is not acessable in the current environment,
+        None if the type is not found, or 'xdg-mime' is not accessible in the current environment,
         or a string of the mime type.
     """
     if XDGMIME_CMD is None:
