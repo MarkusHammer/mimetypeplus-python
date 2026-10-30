@@ -13,7 +13,8 @@ from .typings import Union, Tuple, LiteralString, ZipFile, PathLike, Iterable, N
 from .mimetypecheckers import mimetypes_init, mime_string_from_xml_content, mime_string_from_path, mime_string_from_data, mime_string_from_odf_zip_parsed, guess_extension_text
 from .tools import singlify_str
 
-class MimeType():
+@total_ordering
+class MimeType(Hashable, Reversible[str], Container[Union['MimeType', str, Tuple[str, str], Iterable[str]]]):
     """
     MimeType
 
@@ -26,6 +27,8 @@ class MimeType():
     # this is meant to be called when the class is defined,
     # hence it's uncommon placement
     mimetypes_init()
+
+    __slots__ = ("__maintype", "__subtype")
 
     DEFAULT_TEXT_EXTENTION:LiteralString = "txt"
     DEFAULT_BINARY_EXTENTION:LiteralString = "bin"
@@ -277,6 +280,7 @@ class MimeType():
         main_wild = not self.maintype_defined()
         sub_wild = not self.subtype_defined()
         return main_wild and sub_wild
+
     def __bool__(self):
         """
         Returns:
@@ -334,6 +338,19 @@ class MimeType():
         else:
             return None
 
+    def __contains__(self, item:Union['MimeType', str, Tuple[str, str], Iterable[str], object]):
+        if isinstance(item, (MimeType, tuple, str, Iterable)):
+            item = MimeType(item)
+        else:
+            raise TypeError
+        if self.maintype_defined() and item.maintype_defined():
+            if not self.maintype != item.maintype:
+                return False
+        if self.subtype_defined() and item.subtype_defined():
+            if not self.subtype != item.subtype:
+                return False
+        return True
+
     def __eq__(self,
                other:Union['MimeType', str, Tuple[str, str], Iterable[str], object]
               ) -> Union[bool, NotImplementedType]:
@@ -341,6 +358,23 @@ class MimeType():
             return NotImplemented
         return tuple(self) == tuple(MimeType(other))
 
+    def __gt__(self,
+               other:Union['MimeType', str, Tuple[str, str], Iterable[str], object]
+              ) -> Union[bool, NotImplementedType]:
+        if not isinstance(other, (MimeType, tuple, str, Iterable)):
+            return NotImplemented
+        return tuple(self) > tuple(MimeType(other))
+
+    def __hash__(self) -> int:
+        return hash(tuple(self))
+
     def __iter__(self):
         yield self.maintype
         yield self.subtype
+
+    def __reversed__(self):
+        yield self.subtype
+        yield self.maintype
+
+    def __length_hint__(self) -> int:
+        return 2
