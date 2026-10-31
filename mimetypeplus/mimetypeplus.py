@@ -172,7 +172,7 @@ class MimeType(Hashable, Reversible[str], Container[Union['MimeType', str, Tuple
     @maintype.setter
     def maintype(self, value: str):
         value = (value).strip().lower()
-        if value == "":
+        if not value:
             value = MimeType.WILDCARD_SEQUENCE
         self.__maintype = value
     @maintype.deleter
@@ -189,7 +189,7 @@ class MimeType(Hashable, Reversible[str], Container[Union['MimeType', str, Tuple
     @subtype.setter
     def subtype(self, value: str):
         value = (value).strip().lower()
-        if value == "":
+        if not value:
             value = MimeType.WILDCARD_SEQUENCE
         self.__subtype = value
     @subtype.deleter
