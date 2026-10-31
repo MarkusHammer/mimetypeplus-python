@@ -318,12 +318,7 @@ class MimeType(Hashable, Reversible[str], Container[Union['MimeType', str, Tuple
             and optionally a few other commonly used characters in mime types.
         """
         charset = (MimeType.STRICTLY_ALLOWED_CHARACTERS if strict else MimeType.ALLOWED_CHARACTERS)
-        testcollection = ""
-        if self.maintype != MimeType.WILDCARD_SEQUENCE:
-            testcollection += self.maintype
-        if self.subtype != MimeType.WILDCARD_SEQUENCE:
-            testcollection += self.subtype
-        for char in testcollection:
+        for char in set(self.maintype) | set(self.subtype):
             if not char in charset:
                 return False
         return True
