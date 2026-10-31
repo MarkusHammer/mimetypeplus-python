@@ -175,6 +175,9 @@ class MimeType(Hashable, Reversible[str], Container[Union['MimeType', str, Tuple
         if value == "":
             value = MimeType.WILDCARD_SEQUENCE
         self.__maintype = value
+    @maintype.deleter
+    def maintype(self):
+        self.__maintype = MimeType.WILDCARD_SEQUENCE
 
     @property
     def subtype(self) -> str:
@@ -189,6 +192,9 @@ class MimeType(Hashable, Reversible[str], Container[Union['MimeType', str, Tuple
         if value == "":
             value = MimeType.WILDCARD_SEQUENCE
         self.__subtype = value
+    @subtype.deleter
+    def subtype(self):
+        self.__subtype = MimeType.WILDCARD_SEQUENCE
 
     @property
     def suffix(self) -> str:
@@ -209,6 +215,11 @@ class MimeType(Hashable, Reversible[str], Container[Union['MimeType', str, Tuple
             self.subtype += f"+{value}"
         else:
             self.subtype = self.subtype[:index+1] + value
+    @suffix.deleter
+    def suffix(self):
+        index = self.subtype.rfind("+")
+        if index >= 0:
+            self.subtype = self.subtype[:index]
     structure = suffix
     syntax = suffix
 
@@ -231,6 +242,11 @@ class MimeType(Hashable, Reversible[str], Container[Union['MimeType', str, Tuple
             self.subtype += f"{value}."
         else:
             self.subtype = value + self.subtype[index:]
+    @facet.deleter
+    def facet(self):
+        index = self.subtype.find(".")
+        if index >= 0:
+            self.subtype = self.subtype[index:]
 
     @property
     def experimental_facet(self) -> bool:
