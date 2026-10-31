@@ -261,6 +261,12 @@ class MimeType():
     __str__ = encode
     __repr__ = encode
 
+    def maintype_defined(self) -> bool:
+        return self.maintype != MimeType.WILDCARD_SEQUENCE
+
+    def subtype_defined(self) -> bool:
+        return self.subtype != MimeType.WILDCARD_SEQUENCE
+
     def is_empty(self) -> bool:
         """
         is_empty
@@ -268,8 +274,8 @@ class MimeType():
         Returns:
             True if both the main and subtype are empty (unset), otherwise false.
         """
-        main_wild = self.maintype == MimeType.WILDCARD_SEQUENCE
-        sub_wild = self.subtype == MimeType.WILDCARD_SEQUENCE
+        main_wild = not self.maintype_defined()
+        sub_wild = not self.subtype_defined()
         return main_wild and sub_wild
     def __bool__(self):
         """
