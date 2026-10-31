@@ -10,6 +10,9 @@
         "PUREMAGICMIME",
         "typechecks",
         "xdg",
-        "xdgmime"
+        "xdgmime",
+        "ziptypes",
+        "ZIPTYPES",
+        "ziptypesraw"
     ]
 }

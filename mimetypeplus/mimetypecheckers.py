@@ -14,8 +14,17 @@ from mimetypes import (
 )
 
 from .typings import Union, PathLike, Path, cast
+
 from .cmds import file_cmd_mime_type_from_path, xdgmime_cmd_mime_type_from_path, mimetype_cmd_mime_type_from_path
 
+from .ziptypesraw import mime_string_from_odf_zip_raw
+
+ZIPTYPES_AVAILABLE: bool  # DO NOT MODIFY, READ ONLY
+try:
+    from .ziptypes import mime_string_from_odf_zip_parsed, ZipFile
+    ZIPTYPES_AVAILABLE = True
+except ImportError:
+    ZIPTYPES_AVAILABLE = False
 
 """True if the 'magic' module was imported."""
 MAGICMIME_AVAILABLE: bool  # DO NOT MODIFY, READ ONLY
@@ -191,6 +200,10 @@ def mime_string_from_data(
         found = mime_string_from_path(hint_path)
         mime = found if found is not None else ""
 
+    if mime == "" and bytes_content is not None:
+        found = mime_string_from_odf_zip_raw(bytes_content, errors)
+        mime = found if found is not None else ""
+
     if mime == "" and str_content is not None:
         mime = "text/"
 
@@ -201,3 +214,8 @@ def mime_string_from_data(
             mime = xml_check.strip()
 
     return mime if mime != "" and mime.count("/") == 1 else None
+
+if ZIPTYPES_AVAILABLE:
+    def from_parsed_odf_zipfile(parsed_zip:'ZipFile', errors = "strict") -> Union[str, None]:
+        return mime_string_from_odf_zip_parsed(parsed_zip, errors = errors) #type:ignore
+

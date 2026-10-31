@@ -5,12 +5,16 @@ A module containing the MimeType class, allowing for easy managing of mimetypes 
 Main source: https://datatracker.ietf.org/doc/html/rfc6838#section-4
 """
 
-from collections.abc import Container, Hashable, Reversible #TODO put in the right place
+
+
+from collections.abc import Container, Hashable, Reversible
 from functools import total_ordering
 from string import (digits as DIGITS, ascii_letters as ALPHA)
 
-from .typings import Union, Tuple, LiteralString, ZipFile, PathLike, Iterable, NotImplementedType
-from .mimetypecheckers import mimetypes_init, mime_string_from_xml_content, mime_string_from_path, mime_string_from_data, mime_string_from_odf_zip_parsed, guess_extension_text
+from .typings import Union, Tuple, LiteralString, PathLike, Iterable, NotImplementedType
+from .mimetypecheckers import mimetypes_init, mime_string_from_xml_content, mime_string_from_path, mime_string_from_data, guess_extension_text, ZIPTYPES_AVAILABLE
+if ZIPTYPES_AVAILABLE:
+    from .mimetypecheckers import mime_string_from_odf_zip_parsed, ZipFile
 from .tools import singlify_str
 
 @total_ordering
@@ -124,6 +128,12 @@ class MimeType(Hashable, Reversible[str], Container[Union['MimeType', str, Tuple
                                        errors = errors
                                       )
         return MimeType(string) if string is not None else None
+
+    if ZIPTYPES_AVAILABLE:
+        @classmethod
+        def from_parsed_odf_zipfile(cls, parsed_zip:'ZipFile', errors = "strict") -> Union['MimeType', None]:
+            string = mime_string_from_odf_zip_parsed(parsed_zip, errors = errors) # type:ignore
+            return MimeType(string) if string else None
 
     def __init__(self,
                  mime:Union['MimeType', str, Tuple[str, str], Iterable[str]] = "",
