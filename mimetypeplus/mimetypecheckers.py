@@ -44,6 +44,10 @@ XML_DOCTYPE_HEADERS = {
     "<!doctypexml>": "text/xml",
     "<?xml": "text/xml",
 }
+_XML_HEADER_MAX_LEN:int = max(len(h) for h in XML_DOCTYPE_HEADERS.keys())
+_XML_HEADER_MIN_LEN:int = min(len(h) for h in XML_DOCTYPE_HEADERS.keys())
+_XML_SPACE_INFLATION_MAX:int = _XML_HEADER_MAX_LEN + 50
+
 def mime_string_from_xml_content(content_snippet:str) -> Union[str, None]:
 
     """
@@ -59,11 +63,16 @@ def mime_string_from_xml_content(content_snippet:str) -> Union[str, None]:
         String with a correct mimetype if possible, otherwise None.
     """
 
-    content_snippet = content_snippet[:min(50, len(content_snippet)-1)].replace(" ", "").lower()
-    for k, v in XML_DOCTYPE_HEADERS.items():
-        if content_snippet.startswith(k):
-            return v
-    return None
+    if not content_snippet:
+        return None
+    content_snippet = content_snippet.lstrip()
+    if len(content_snippet) < _XML_HEADER_MIN_LEN:
+        return None
+    max_ind = min(_XML_SPACE_INFLATION_MAX, len(content_snippet)-1)
+    content_snippet = content_snippet[:max_ind].replace(" ", "").lower()
+    max_ind = min(_XML_HEADER_MAX_LEN, len(content_snippet)-1)
+    content_snippet = content_snippet[:max_ind]
+    return XML_DOCTYPE_HEADERS.get(content_snippet, None)
 
 def mime_string_from_path(
                           path:Union[str, PathLike, Path],
